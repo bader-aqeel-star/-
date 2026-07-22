@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>سادن البن | متجر القهوة المختصة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --roast-black:#241611;
+    --roast-brown:#4A2E1F;
+    --cream:#F4E9D8;
+    --cream-soft:#FBF6ED;
+    --copper:#B9702E;
+    --copper-deep:#8A4E1F;
+    --sage:#69725A;
+    --line: rgba(36,22,17,0.12);
+    --radius: 4px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--cream-soft);
+    color:var(--roast-black);
+    font-family:'Tajawal', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+
+  /* ===== Top bar ===== */
+  .topbar{
+    background:var(--roast-black);
+    color:var(--cream);
+    font-size:13px;
+    text-align:center;
+    padding:8px 12px;
+    letter-spacing:.3px;
+  }
+
+  /* ===== Header ===== */
+  header{
+    background:var(--roast-black);
+    color:var(--cream);
+    padding:18px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:40;
+    border-bottom:1px solid rgba(244,233,216,0.1);
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .brand-mark{
+    width:40px;height:40px;
+    border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, var(--copper) 0%, var(--copper-deep) 55%, var(--roast-black) 100%);
+    flex-shrink:0;
+    position:relative;
+  }
+  .brand-mark::after{
+    content:"";
+    position:absolute; inset:0;
+    border-radius:50%;
+    box-shadow: inset 0 0 0 1px rgba(244,233,216,.25);
+  }
+  .brand-name{
+    font-family:'Lalezar', sans-serif;
+    font-size:26px;
+    letter-spacing:.5px;
+    color:var(--cream);
+  }
+  .brand-sub{
+    font-size:11px;
+    color: rgba(244,233,216,0.55);
+    letter-spacing:2px;
+    margin-top:-2px;
+  }
+  .cart-btn{
+    background:var(--copper);
+    color:var(--roast-black);
+    border:none;
+    padding:10px 18px;
+    border-radius:var(--radius);
+    font-family:'Tajawal';
+    font-weight:700;
+    font-size:14px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    transition:background .15s ease;
+  }
+  .cart-btn:hover{ background:#cf7f37; }
+  .cart-count{
+    background:var(--roast-black);
+    color:var(--cream);
+    border-radius:50%;
+    width:20px;height:20px;
+    font-size:12px;
+    display:flex;align-items:center;justify-content:center;
+  }
+
+  /* ===== Hero ===== */
+  .hero{
+    background:
+      linear-gradient(180deg, rgba(36,22,17,.88), rgba(36,22,17,.72)),
+      repeating-linear-gradient(135deg, #3a241a 0px, #3a241a 2px, #34201704 2px, #34201704 40px);
+    color:var(--cream);
+    padding:80px 28px 70px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-eyebrow{
+    font-size:13px;
+    letter-spacing:3px;
+    color:var(--copper);
+    font-weight:700;
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-family:'Lalezar', sans-serif;
+    font-size:clamp(38px, 6vw, 64px);
+    margin:0 0 18px;
+    letter-spacing:1px;
+    line-height:1.15;
+  }
+  .hero p{
+    max-width:560px;
+    margin:0 auto;
+    color: rgba(244,233,216,0.8);
+    font-size:16px;
+  }
+  .hero-cta{
+    margin-top:34px;
+    display:inline-block;
+    background:var(--copper);
+    color:var(--roast-black);
+    padding:14px 34px;
+    border-radius:var(--radius);
+    font-weight:700;
+    text-decoration:none;
+    font-size:15px;
+    cursor:pointer;
+    border:none;
+  }
+
+  /* roast bean divider */
+  .bean-row{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-top:44px;
+    opacity:.55;
+  }
+  .bean-row span{
+    width:8px;height:12px;
+    border-radius:50%;
+    background:var(--copper);
+    transform:rotate(15deg);
+    position:relative;
+  }
+  .bean-row span::after{
+    content:"";
+    position:absolute; top:1px; bottom:1px; left:50%;
+    width:1px;
+    background:var(--roast-black);
+  }
+
+  /* ===== Section wrap ===== */
+  .section{
+    max-width:1120px;
+    margin:0 auto;
+    padding:64px 28px;
+  }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    margin-bottom:36px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:18px;
+  }
+  .section-head h2{
+    font-family:'Lalezar', sans-serif;
+    font-size:32px;
+    margin:0;
+    color:var(--roast-brown);
+  }
+  .section-head .count{
+    font-size:13px;
+    color:var(--sage);
+  }
+
+  /* ===== Product grid ===== */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(250px, 1fr));
+    gap:22px;
+  }
+  .card{
+    background:var(--cream);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 24px rgba(36,22,17,.12);
+  }
+  .card-art{
+    height:130px;
+    position:relative;
+    background: linear-gradient(160deg, var(--roast-brown), var(--roast-black));
+    display:flex; align-items:center; justify-content:center;
+  }
+  .card-art .tag{
+    position:absolute;
+    top:10px; right:10px;
+    background:rgba(244,233,216,.92);
+    color:var(--roast-black);
+    font-size:11px;
+    font-weight:700;
+    padding:4px 10px;
+    border-radius:20px;
+  }
+  .roast-dot{
+    width:52px;height:52px;
+    border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, var(--copper), var(--roast-black) 75%);
+    box-shadow: 0 4px 14px rgba(0,0,0,.35);
+  }
+  .card-body{
+    padding:18px 18px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    flex:1;
+  }
+  .card-body h3{
+    margin:0;
+    font-size:17px;
+    color:var(--roast-black);
+  }
+  .card-body .desc{
+    font-size:13px;
+    color:#6b584a;
+    flex:1;
+  }
+  .roast-meter{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:11px;
+    color:var(--sage);
+  }
+  .roast-bar{
+    flex:1;
+    height:5px;
+    border-radius:3px;
+    background: var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .roast-bar i{
+    position:absolute; inset:0;
+    background:linear-gradient(90deg, var(--copper), var(--roast-black));
+  }
+  .card-foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-top:10px;
+  }
+  .price{
+    font-weight:900;
+    font-size:18px;
+    color:var(--copper-deep);
+  }
+  .price small{
+    font-size:11px;
+    font-weight:400;
+    color:#8a7a6b;
+  }
+  .add-btn{
+    background:var(--roast-black);
+    color:var(--cream);
+    border:none;
+    padding:9px 16px;
+    border-radius:var(--radius);
+    font-family:'Tajawal';
+    font-weight:700;
+    font-size:13px;
+    cursor:pointer;
+    transition:background .15s ease;
+  }
+  .add-btn:hover{background:var(--copper-deep);}
+  .add-btn.added{background:var(--sage);}
+
+  /* ===== Cart drawer ===== */
+  .overlay{
+    position:fixed; inset:0;
+    background:rgba(36,22,17,.45);
+    opacity:0; pointer-events:none;
+    transition:opacity .2s ease;
+    z-index:50;
+  }
+  .overlay.open{opacity:1; pointer-events:auto;}
+
+  .drawer{
+    position:fixed;
+    top:0; right:0;
+    height:100%;
+    width:min(400px, 92vw);
+    background:var(--cream-soft);
+    transform:translateX(105%);
+    transition:transform .25s ease;
+    z-index:60;
+    display:flex;
+    flex-direction:column;
+    box-shadow:-10px 0 30px rgba(0,0,0,.2);
+  }
+  .drawer.open{transform:translateX(0);}
+  .drawer-head{
+    background:var(--roast-black);
+    color:var(--cream);
+    padding:20px 22px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .drawer-head h3{
+    margin:0;
+    font-family:'Lalezar';
+    font-size:22px;
+    font-weight:400;
+  }
+  .close-btn{
+    background:none;
+    border:none;
+    color:var(--cream);
+    font-size:22px;
+    cursor:pointer;
+    line-height:1;
+  }
+  .drawer-items{
+    flex:1;
+    overflow-y:auto;
+    padding:16px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .empty-cart{
+    text-align:center;
+    color:#8a7a6b;
+    margin-top:60px;
+    font-size:14px;
+  }
+  .cart-item{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    padding-bottom:14px;
+    border-bottom:1px solid var(--line);
+  }
+  .cart-item .thumb{
+    width:48px;height:48px;
+    border-radius:50%;
+    flex-shrink:0;
+    background: radial-gradient(circle at 35% 30%, var(--copper), var(--roast-black) 75%);
+  }
+  .cart-item .info{flex:1; min-width:0;}
+  .cart-item .info h4{
+    margin:0 0 2px;
+    font-size:14px;
+  }
+  .cart-item .info .unit{
+    font-size:12px;
+    color:#8a7a6b;
+  }
+  .qty-ctrl{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:var(--cream);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:2px 4px;
+  }
+  .qty-ctrl button{
+    width:22px;height:22px;
+    border-radius:50%;
+    border:none;
+    background:var(--roast-black);
+    color:var(--cream);
+    cursor:pointer;
+    font-size:14px;
+    line-height:1;
+  }
+  .qty-ctrl span{
+    min-width:16px;
+    text-align:center;
+    font-size:13px;
+    font-weight:700;
+  }
+  .remove-x{
+    background:none;
+    border:none;
+    color:#b04b3a;
+    font-size:13px;
+    cursor:pointer;
+    text-decoration:underline;
+  }
+  .drawer-summary{
+    padding:18px 22px 24px;
+    border-top:1px solid var(--line);
+    background:var(--cream);
+  }
+  .row{
+    display:flex;
+    justify-content:space-between;
+    font-size:14px;
+    margin-bottom:8px;
+    color:#5c4a3c;
+  }
+  .row.total{
+    font-size:18px;
+    font-weight:900;
+    color:var(--roast-black);
+    border-top:1px dashed var(--line);
+    padding-top:10px;
+    margin-top:6px;
+  }
+  .checkout-btn{
+    width:100%;
+    margin-top:14px;
+    background:var(--copper);
+    color:var(--roast-black);
+    border:none;
+    padding:13px;
+    border-radius:var(--radius);
+    font-weight:900;
+    font-size:15px;
+    cursor:pointer;
+  }
+  .checkout-btn:disabled{
+    background:#d8c9b6;
+    cursor:not-allowed;
+  }
+
+  /* ===== success screen ===== */
+  .success{
+    text-align:center;
+    padding:40px 20px;
+  }
+  .success .check{
+    width:56px;height:56px;
+    border-radius:50%;
+    background:var(--sage);
+    color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    margin:0 auto 16px;
+    font-size:26px;
+  }
+  .success h4{ margin:0 0 8px; font-size:18px; }
+  .success p{ color:#8a7a6b; font-size:13px; }
+  .success button{
+    margin-top:16px;
+    background:var(--roast-black);
+    color:var(--cream);
+    border:none;
+    padding:10px 20px;
+    border-radius:var(--radius);
+    cursor:pointer;
+    font-weight:700;
+  }
+
+  footer{
+    background:var(--roast-black);
+    color:rgba(244,233,216,.6);
+    text-align:center;
+    padding:26px;
+    font-size:12px;
+  }
+
+  @media (max-width:600px){
+    header{padding:14px 16px;}
+    .section{padding:44px 16px;}
+    .hero{padding:60px 16px 50px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">شحن مجاني للطلبات فوق 200 ر.س داخل المملكة</div>
+
+<header>
+  <div class="brand">
+    <div class="brand-mark"></div>
+    <div>
+      <div class="brand-name">سادن البن</div>
+      <div class="brand-sub">SADIN COFFEE ROASTERS</div>
+    </div>
+  </div>
+  <button class="cart-btn" onclick="openCart()">
+    🛒 السلة <span class="cart-count" id="cartCount">0</span>
+  </button>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow">محمّص طازج أسبوعيًا</div>
+  <h1>بُنّ يُحكى عنه<br>قبل أن يُشرب</h1>
+  <p>نختار الحبة، نتابع درجة التحميص، ونشحنها إليك خلال أيام من التحميص — لا مخزون قديم، ولا وعود فارغة.</p>
+  <button class="hero-cta" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">تصفح المنتجات</button>
+  <div class="bean-row">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+</section>
+
+<div class="section" id="products">
+  <div class="section-head">
+    <h2>القهوة المحمّصة</h2>
+    <div class="count" id="prodCount">6 أصناف</div>
+  </div>
+  <div class="grid" id="grid"></div>
+</div>
+
+<footer>© 2026 سادن البن. جميع المنتجات محمّصة محليًا. الأسعار شاملة ضريبة القيمة المضافة 15%.</footer>
+
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h3>سلة الطلبات</h3>
+    <button class="close-btn" onclick="closeCart()">×</button>
+  </div>
+  <div class="drawer-items" id="drawerItems"></div>
+  <div class="drawer-summary" id="drawerSummary"></div>
+</div>
+
+<script>
+const PRODUCTS = [
+  {id:1, name:"بن عربي فاخر", desc:"محمصة فاتحة، نكهة زهرية وحموضة متوازنة", price:45, roast:25, tag:"الأكثر مبيعًا"},
+  {id:2, name:"بن كولومبي", desc:"محمصة متوسطة، مذاق الكراميل والمكسرات", price:55, roast:50, tag:null},
+  {id:3, name:"بن إثيوبي يرغاتشيف", desc:"محمصة فاتحة، فاكهي مع لمسة توت", price:65, roast:20, tag:"محدود"},
+  {id:4, name:"بن برازيلي", desc:"محمصة غامقة، جسم ثقيل ونكهة شوكولاتة", price:50, roast:80, tag:null},
+  {id:5, name:"بن هندي مونسون", desc:"محمصة غامقة، حموضة منخفضة ونكهة تابلية", price:48, roast:85, tag:null},
+  {id:6, name:"خلطة سادن الخاصة", desc:"مزيج حصري متوسط إلى غامق، توقيع البيت", price:60, roast:65, tag:"توقيعنا"},
+];
+
+let cart = {}; // id -> qty
+
+function renderProducts(){
+  const grid = document.getElementById('grid');
+  grid.innerHTML = PRODUCTS.map(p => `
+    <div class="card">
+      <div class="card-art">
+        ${p.tag ? `<div class="tag">${p.tag}</div>` : ''}
+        <div class="roast-dot"></div>
+      </div>
+      <div class="card-body">
+        <h3>${p.name}</h3>
+        <div class="desc">${p.desc}</div>
+        <div class="roast-meter">
+          <span>فاتح</span>
+          <div class="roast-bar"><i style="clip-path: inset(0 ${100-p.roast}% 0 0)"></i></div>
+          <span>غامق</span>
+        </div>
+        <div class="card-foot">
+          <div class="price">${p.price} ر.س <small>/ 250غم</small></div>
+          <button class="add-btn" id="btn-${p.id}" onclick="addToCart(${p.id})">أضف للسلة</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function addToCart(id){
+  cart[id] = (cart[id] || 0) + 1;
+  updateCartUI();
+  const btn = document.getElementById('btn-'+id);
+  btn.textContent = "أُضيف ✓";
+  btn.classList.add('added');
+  setTimeout(()=>{ btn.textContent="أضف للسلة"; btn.classList.remove('added'); }, 900);
+}
+
+function changeQty(id, delta){
+  if(!cart[id]) return;
+  cart[id] += delta;
+  if(cart[id] <= 0) delete cart[id];
+  updateCartUI();
+}
+
+function removeItem(id){
+  delete cart[id];
+  updateCartUI();
+}
+
+function cartTotals(){
+  let subtotal = 0, count = 0;
+  Object.entries(cart).forEach(([id, qty])=>{
+    const p = PRODUCTS.find(x=>x.id==id);
+    subtotal += p.price * qty;
+    count += qty;
+  });
+  const tax = subtotal * 0.15;
+  return {subtotal, tax, total: subtotal+tax, count};
+}
+
+function updateCartUI(){
+  const {subtotal, tax, total, count} = cartTotals();
+  document.getElementById('cartCount').textContent = count;
+
+  const itemsEl = document.getElementById('drawerItems');
+  const ids = Object.keys(cart);
+  if(ids.length === 0){
+    itemsEl.innerHTML = `<div class="empty-cart">سلتك فارغة حاليًا<br>أضف بعض القهوة ☕</div>`;
+  } else {
+    itemsEl.innerHTML = ids.map(id=>{
+      const p = PRODUCTS.find(x=>x.id==id);
+      const qty = cart[id];
+      return `
+        <div class="cart-item">
+          <div class="thumb"></div>
+          <div class="info">
+            <h4>${p.name}</h4>
+            <div class="unit">${p.price} ر.س × ${qty}</div>
+          </div>
+          <div class="qty-ctrl">
+            <button onclick="changeQty(${p.id}, -1)">−</button>
+            <span>${qty}</span>
+            <button onclick="changeQty(${p.id}, 1)">+</button>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  document.getElementById('drawerSummary').innerHTML = `
+    <div class="row"><span>المجموع الفرعي</span><span>${subtotal.toFixed(2)} ر.س</span></div>
+    <div class="row"><span>ضريبة القيمة المضافة (15%)</span><span>${tax.toFixed(2)} ر.س</span></div>
+    <div class="row total"><span>الإجمالي</span><span>${total.toFixed(2)} ر.س</span></div>
+    <button class="checkout-btn" ${count===0 ? 'disabled' : ''} onclick="checkout()">إتمام الطلب</button>
+  `;
+}
+
+function checkout(){
+  const {total, count} = cartTotals();
+  const itemsEl = document.getElementById('drawerItems');
+  const summaryEl = document.getElementById('drawerSummary');
+  itemsEl.innerHTML = `
+    <div class="success">
+      <div class="check">✓</div>
+      <h4>تم استلام طلبك بنجاح</h4>
+      <p>${count} منتج بإجمالي ${total.toFixed(2)} ر.س. سيصلك تأكيد على واتساب/البريد قريبًا.</p>
+      <button onclick="resetCart()">طلب جديد</button>
+    </div>
+  `;
+  summaryEl.innerHTML = '';
+}
+
+function resetCart(){
+  cart = {};
+  updateCartUI();
+  closeCart();
+}
+
+function openCart(){
+  document.getElementById('overlay').classList.add('open');
+  document.getElementById('drawer').classList.add('open');
+}
+function closeCart(){
+  document.getElementById('overlay').classList.remove('open');
+  document.getElementById('drawer').classList.remove('open');
+}
+
+renderProducts();
+updateCartUI();
+</script>
+
+</body>
+</html>
